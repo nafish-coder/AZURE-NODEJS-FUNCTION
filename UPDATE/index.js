@@ -102,7 +102,8 @@ console.log("authHeader",authHeader)
         },
         body: {
           message: "Record updated successfully",
-          data: result.modifiedCount,
+          data:updatedItem,
+         
         },
       };
     }   }

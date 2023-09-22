@@ -55,42 +55,63 @@ module.exports = async function (context, req) {
     }
 
     // Assuming req.body contains the data for the new item
-    const insertedbody = req.body;
+// ...
 
-    // Find the last person's emp_no and increment it by 1
+// Assuming req.body contains the data for the item to be inserted/updated
+const insertedBody = req.body;
+  const { error } = updateSchema.validate(insertedBody);
 
-    const lastPerson = await collection.findOne({}, { sort: { emp_no: -1 } });
-    if (lastPerson) {
-      insertedbody.emp_no = lastPerson.emp_no + 1;
-    } else {
-      insertedbody.emp_no = 1;
-    }
-    const { error } = updateSchema.validate(insertedbody);
-    if (error) {
-      context.res = {
-        status: 400,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: {
-          message: error.details[0].message,
-        },
-      };
-      return;
-    } else {
-      const result = await collection.insertOne(insertedbody);
-      context.res = {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: {
-          message: "Item created successfully",
-          data: result,
-        },
-      };
-    }
-  } catch (error) {
+  if (error) {
+    context.res = {
+      status: 400,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {
+        message: error.details[0].message,
+      },
+    };
+    return;
+  }
+// Check if a document with the same emp_no already exists
+const existingDocument = await collection.findOne({ emp_no: insertedBody.emp_no });
+
+if (existingDocument) {
+  // Update the existing document
+  const result = await collection.updateOne(
+    { emp_no: insertedBody.emp_no },
+    { $set: insertedBody }
+  );
+  context.res = {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: {
+      message: "Item updated successfully",
+   
+      insertedBody:insertedBody
+    },
+  };
+} 
+else {
+    const result = await collection.insertOne(insertedBody);
+    context.res = {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {
+        message: "Item updated successfully",
+        data: result,
+        insertedBody:insertedBody
+      },
+    };
+  
+}}
+
+// ...
+ catch (error) {
     context.res = {
       status: 500,
       headers: {

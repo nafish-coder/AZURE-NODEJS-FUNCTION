@@ -29,7 +29,7 @@ module.exports = async function (context, req) {
     try {
       // Verify the JWT token using a secret or public key
       const decoded = jwt.verify(token, process.env.secretKey);
-  console.log(decoded)
+  console.log(`User provide a valid token in the request header to access the APIs. `,decoded)
       return decoded;
     } catch (error) {
       // If the token verification fails, return null or throw an error
@@ -94,7 +94,8 @@ module.exports = async function (context, req) {
     const page = parseInt(req.query.page) || 1;
     const pageSize = parseInt(req.query.pageSize) || 10;
     const skip = (page - 1) * pageSize;
-
+ console.log("queryOptions",queryOptions)
+ console.log("sort",sort)
     // Read operation with querying options
     const results = await collection
       .find(queryOptions)
@@ -102,8 +103,7 @@ module.exports = async function (context, req) {
       .skip(skip) // Apply skipping
       .limit(pageSize) // Apply limiting
       .toArray();
-
-    // console.log("Results:", results);
+    console.log("Results:", results.length);
    
       context.res = {
         status: 200,
