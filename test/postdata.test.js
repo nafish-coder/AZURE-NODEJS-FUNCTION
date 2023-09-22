@@ -1,4 +1,4 @@
-const azureFunction = require("../POST/index");
+const azureFunction = require("../TODO-POST/index");
 const Ajv = require('ajv');
 const config = require("../local.settings.json");
 const token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hZmlzaCIsInJvbGUiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY5NTI4MTMxOSwiZXhwIjoxNzI2ODM4OTE5fQ.SuDdge1Pq6-KfCdeiFBjx8zReXWSTmObgrkOH5xekXc"
@@ -87,10 +87,10 @@ describe("Azure Function Tests -POST data", () => {
     const req = {
       query: {},
       body: {
-        emp_no:190,
+        emp_no:42,
         birth_date: "2000-02-27T18:30:00.000Z",
-        first_name: "naf",
-        last_name: "kumar",
+        first_name: "NAFISH",
+        last_name: "SHEIKH",
         gender: "M",
         hire_date: "2023-10-19T18:30:00.000Z",
       },
@@ -117,10 +117,10 @@ describe("Azure Function Tests -POST data", () => {
     const req = {
       query: {},
       body: {
-        emp_no:555,
+        emp_no:67,
         birth_date: "2000-02-27T18:30:00.000Z",
-        first_name: "md nafish",
-        last_name: "alam",
+        first_name: "Md nafish",
+        last_name: "Alam",
         gender: "M",
         hire_date: "2023-10-19T18:30:00.000Z",
       },

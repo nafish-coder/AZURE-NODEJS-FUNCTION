@@ -1,4 +1,4 @@
-const azureFunction = require("../DELETE/index");
+const azureFunction = require("../TODO-DELETE/index");
 const config = require("../local.settings.json");
 const Ajv = require('ajv');
 const ajv = new Ajv();
@@ -64,7 +64,7 @@ describe("Azure Function Tests -deleted data", () => {
     };
 
     const req = {
-      query: {emp_no:30},
+      query: {emp_no:10},
       body: {
       },
     };
@@ -90,7 +90,7 @@ describe("Azure Function Tests -deleted data", () => {
     };
 
     const req = {
-      query: {emp_no: 8},
+      query: {emp_no:55555},
       body: {
       },
     };

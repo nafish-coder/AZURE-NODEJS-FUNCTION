@@ -1,4 +1,4 @@
-const azureFunction = require("../UPDATE/index");
+const azureFunction = require("../TODO-UPDATE/index");
 const config = require("../local.settings.json");
 const token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hZmlzaCIsInJvbGUiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY5NTI4MTMxOSwiZXhwIjoxNzI2ODM4OTE5fQ.SuDdge1Pq6-KfCdeiFBjx8zReXWSTmObgrkOH5xekXc"
 const Ajv = require('ajv');

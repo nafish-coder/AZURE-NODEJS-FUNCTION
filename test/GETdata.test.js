@@ -1,4 +1,4 @@
-const azureFunction = require("../GET/index");
+const azureFunction = require("../TODO-GET/index");
 const Ajv = require('ajv');
 const config = require("../local.settings.json");
 const token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hZmlzaCIsInJvbGUiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY5NTI4MTMxOSwiZXhwIjoxNzI2ODM4OTE5fQ.SuDdge1Pq6-KfCdeiFBjx8zReXWSTmObgrkOH5xekXc"
@@ -27,7 +27,6 @@ var schema = {
   required: ["page", "pageSize", "StartIndex", "data", "message"],
 };
 const ajv = new Ajv();
-
 describe("Azure Function Tests -GET data", () => {
   beforeAll(() => {
     process.env = Object.assign(process.env, {
