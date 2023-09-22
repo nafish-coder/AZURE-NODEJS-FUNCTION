@@ -24,8 +24,9 @@ Getting Started
 
 Follow these steps to set up and run your Azure Function locally using Visual Studio Code and Gradle:
 
-### Step 1: Clone this `Repository
-    
+ ###Step 1: Clone this Repository
+   "Please ensure that the 'package.json' and 'package-lock.json' files are present inside the folder. If they are not present, please create them and copy the data from the corresponding files on GitHub. This is important because sometimes, when cloning the repository, there may be compatible filenames errors due to the filenames of these files."
+    `
     git config hooks.enforcecompatiblefilenames true 
     git clone https://github.com/nafish-coder/AZURE-NODEJS-FUNCTION
            cd AZURE-NODEJS-FUNCTION
