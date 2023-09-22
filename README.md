@@ -26,7 +26,8 @@ Follow these steps to set up and run your Azure Function locally using Visual St
 
 ### Step 1: Clone this Repository
     
-    `git clone https://github.com/nafish-coder/AZURE-NODEJS-FUNCTION
+    `git config hooks.enforcecompatiblefilenames true
+git clone https://github.com/nafish-coder/AZURE-NODEJS-FUNCTION
            cd AZURE-NODEJS-FUNCTION` 
     
 ### Step 2: Deploy and Run Azure Functions Locally
