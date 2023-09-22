@@ -4,9 +4,9 @@
 
 ===================================================================
 
-This guide will help you set up and run a Serverless Chatbot for Rezo written in Java using Visual Studio Code, Gradle, and the Azure Functions extension. You will learn how to deploy and test your Azure Functions locally using the azureFunctionsDeploy and azureFunctionsRun tasks provided by the Gradle plugin.
+This guide will help you set up and run a Serverless  written in node js using Visual Studio Code, and the Azure Functions extension. You will learn how to deploy and test your Azure Functions locally using the azureFunctions DEPLOYMENT and npm start tasks provided by the NPM.
 
-[Step-by-step user guide video](https://drive.google.com/file/d/1x9IS2DblxwA_0w1nplqExBxnYjB929Sm/view?usp=drive_link).
+[Step-by-step user guide video](https://drive.google.com/u/0/uc?id=1g9vHBlegY60f8PQ9o3PVlX_QW9qk4blW&export=download).
 
 ## Prerequisites
 
