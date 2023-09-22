@@ -87,7 +87,7 @@ describe("Azure Function Tests -POST data", () => {
     const req = {
       query: {},
       body: {
-        emp_no:8888,
+        emp_no:190,
         birth_date: "2000-02-27T18:30:00.000Z",
         first_name: "naf",
         last_name: "kumar",

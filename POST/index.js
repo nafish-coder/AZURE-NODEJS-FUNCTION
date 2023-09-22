@@ -103,7 +103,6 @@ else {
       },
       body: {
         message: "Item updated successfully",
-        data: result,
         insertedBody:insertedBody
       },
     };

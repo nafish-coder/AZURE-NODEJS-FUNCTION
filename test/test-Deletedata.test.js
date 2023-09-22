@@ -64,7 +64,7 @@ describe("Azure Function Tests -deleted data", () => {
     };
 
     const req = {
-      query: {emp_no:41},
+      query: {emp_no:30},
       body: {
       },
     };
