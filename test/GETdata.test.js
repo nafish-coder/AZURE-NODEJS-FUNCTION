@@ -1,4 +1,4 @@
-const azureFunction = require("../TODO-GET/index");
+const azureFunction = require("../employees-get/index");
 const Ajv = require('ajv');
 const config = require("../local.settings.json");
 const token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hZmlzaCIsInJvbGUiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY5NTI4MTMxOSwiZXhwIjoxNzI2ODM4OTE5fQ.SuDdge1Pq6-KfCdeiFBjx8zReXWSTmObgrkOH5xekXc"
@@ -287,7 +287,7 @@ describe("Azure Function Tests -GET data", () => {
     expect(valid).toBe(false);
     
     expect(context.res.status).toBe(400); 
-    expect(context.res.body).toBe("Invalid sort parameter format. Use sort=fieldName:asc or ?sort=fieldName:desc");
+    expect(context.res.body.message).toBe("Invalid sort parameter format. Use 'sort=fieldName:asc' or 'sort=fieldName:desc'");
 
   }, 15000);
   it("pagination in  database table using a GET request and returning a 200 status code", async () => {
@@ -381,7 +381,7 @@ describe("Azure Function Tests -GET data", () => {
    
    
     expect(context.res.status).toBe(500); 
-    expect(context.res.body.message).toBe("can't retrieve data from the database table using a GET request");
+    expect(context.res.body.message).toBe("Can't retrieve data from the database table using a GET request");
 
   }, 15000);
   

@@ -1,4 +1,4 @@
-const azureFunction = require("../TODO-POST/index");
+const azureFunction = require("../employees-post/index")
 const Ajv = require('ajv');
 const config = require("../local.settings.json");
 const token="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hZmlzaCIsInJvbGUiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY5NTI4MTMxOSwiZXhwIjoxNzI2ODM4OTE5fQ.SuDdge1Pq6-KfCdeiFBjx8zReXWSTmObgrkOH5xekXc"
@@ -87,7 +87,7 @@ describe("Azure Function Tests -POST data", () => {
     const req = {
       query: {},
       body: {
-        emp_no:42,
+        emp_no:44,
         birth_date: "2000-02-27T18:30:00.000Z",
         first_name: "NAFISH",
         last_name: "SHEIKH",
@@ -105,7 +105,7 @@ describe("Azure Function Tests -POST data", () => {
     const isValid = validate(context.res.body);
     expect(isValid).toBe(true);
     expect(context.res.status).toBe(200); 
-    expect(context.res.body.message).toBe("Item updated successfully");
+    expect(context.res.body.message).toBe("Item updated or inserted successfully");
     expect(context.res.body.insertedBody).toBe(req.body);
 
   }, 10000);
@@ -117,7 +117,7 @@ describe("Azure Function Tests -POST data", () => {
     const req = {
       query: {},
       body: {
-        emp_no:67,
+        emp_no:69,
         birth_date: "2000-02-27T18:30:00.000Z",
         first_name: "Md nafish",
         last_name: "Alam",
@@ -135,7 +135,7 @@ describe("Azure Function Tests -POST data", () => {
     const isValid = validate(context.res.body);
     expect(isValid).toBe(true);
     expect(context.res.status).toBe(200); 
-    expect(context.res.body.message).toBe("Item updated successfully");
+    expect(context.res.body.message).toBe("Item updated or inserted successfully");
     expect(context.res.body.insertedBody).toBe(req.body);
   }, 10000);
   it("VALIDATION : gender should be required", async () => {
@@ -396,7 +396,7 @@ describe("Azure Function Tests -POST data", () => {
    
     expect(context.res.status).toBe(500); 
     expect(context.res.body.message).toBe(
-      "Error: No data found in the request"
+      "Internal Server Error"
     );
 
   }, 10000);

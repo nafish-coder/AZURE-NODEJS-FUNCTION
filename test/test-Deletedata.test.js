@@ -1,4 +1,4 @@
-const azureFunction = require("../TODO-DELETE/index");
+const azureFunction = require("../employees-delete/index");
 const config = require("../local.settings.json");
 const Ajv = require('ajv');
 const ajv = new Ajv();
@@ -64,7 +64,7 @@ describe("Azure Function Tests -deleted data", () => {
     };
 
     const req = {
-      query: {emp_no:10},
+      query: {emp_no:11},
       body: {
       },
     };
@@ -164,5 +164,22 @@ describe("Azure Function Tests -deleted data", () => {
 
     
   }, 10000);
- 
+  it("handles error when no data is given in the request 500 status code", async () => {
+    const context = {
+      res: {},
+    };
+
+    const req = {};
+
+    await azureFunction(context, req);
+    const validate = ajv.compile(schema);
+    const isValid = validate(context.res.body);
+    expect(isValid).toBe(false);
+   
+    expect(context.res.status).toBe(500); 
+    expect(context.res.body.message).toBe(
+      "An error occurred while processing your request."
+    );
+
+  }, 10000);
 });
