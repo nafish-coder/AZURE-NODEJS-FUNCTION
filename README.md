@@ -55,11 +55,16 @@ Once the runtime is ready, you'll see a URL like:
 
 ```text
 Functions:
-JWTTOKEN: [GET] http://localhost:7071/api/JWTTOKEN
-TODO-DELETE: [DELETE] http://localhost:7071/api/TODO-DELETE
-TODO-GET: [GET] http://localhost:7071/api/TODO-GET
-TODO-POST: [POST] http://localhost:7071/api/TODO-POST
-TODO-UPDATE: [PUT] http://localhost:7071/api/TODO-UPDATE
+
+        employees-delete: [DELETE] http://localhost:7071/api/employees-delete
+
+        employees-get: [GET] http://localhost:7071/api/employees-get
+
+        employees-jwttoken: [GET] http://localhost:7071/api/employees-jwttoken
+
+        employees-post: [POST] http://localhost:7071/api/employees-post
+
+        employees-update: [PUT] http://localhost:7071/api/employees-update
 ```
 
 where you can access your deployed functions.
