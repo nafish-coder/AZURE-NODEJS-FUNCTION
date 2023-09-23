@@ -1,5 +1,5 @@
-const { extractUserFromToken } = require("../uservalidate");
-const connectToMongoDB = require("../Dbconfig");
+const { extractUserFromToken } = require("../validate-token/uservalidate");
+const connectToMongoDB = require("../database-config/Dbconfig");
 const Joi = require("joi");
 
 const updateSchema = Joi.object({
