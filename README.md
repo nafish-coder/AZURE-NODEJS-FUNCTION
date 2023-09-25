@@ -28,7 +28,7 @@ Please ensure that the 'package.json' and 'package-lock.json' files are present 
 ```bash
 git config hooks.enforcecompatiblefilenames true 
 git clone https://github.com/nafish-coder/azure-nodejs-function
-cd AZURE-NODEJS-FUNCTION
+cd azure-nodejs-function
 ```
 
 
