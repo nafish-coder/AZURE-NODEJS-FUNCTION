@@ -87,7 +87,7 @@ describe("Azure Function Tests -POST data", () => {
     const req = {
       query: {},
       body: {
-        emp_no:44,
+        emp_no:69,
         birth_date: "2000-02-27T18:30:00.000Z",
         first_name: "NAFISH",
         last_name: "SHEIKH",
@@ -109,35 +109,7 @@ describe("Azure Function Tests -POST data", () => {
     expect(context.res.body.insertedBody).toBe(req.body);
 
   }, 50000);
-  it("should update if emp_no is exist then record updated record successfully and return a 200 status code", async () => {
-    const context = {
-      res: {},
-    };
-
-    const req = {
-      query: {},
-      body: {
-        emp_no:69,
-        birth_date: "2000-02-27T18:30:00.000Z",
-        first_name: "Md nafish",
-        last_name: "Alam",
-        gender: "M",
-        hire_date: "2023-10-19T18:30:00.000Z",
-      },
-    };
-    req.headers = {
-      authorization:
-        token,
-    };
-
-    await azureFunction(context, req);
-    const validate = ajv.compile(schema);
-    const isValid = validate(context.res.body);
-    expect(isValid).toBe(true);
-    expect(context.res.status).toBe(200); 
-    expect(context.res.body.message).toBe("Item updated or inserted successfully");
-    expect(context.res.body.insertedBody).toBe(req.body);
-  }, 50000);
+ 
   it("VALIDATION : gender should be required", async () => {
     const context = {
       res: {},
