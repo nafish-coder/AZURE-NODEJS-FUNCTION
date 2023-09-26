@@ -14,7 +14,7 @@ const updateSchema = Joi.object({
 module.exports = async function (context, req) {
   try {
     const user = extractUserFromToken(req, process.env.secretKey);
-
+    console.log(  "valid token",user)
     if (!user) {
       context.res = {
         status: 401,
@@ -33,8 +33,9 @@ module.exports = async function (context, req) {
     const updatedItem = { ...req.body, emp_no: emp_no }; // Assuming req.body contains the updated data
     const filter = { emp_no: updatedItem.emp_no }; // Assuming you are updating by emp_no
     const { error } = updateSchema.validate(updatedItem);
-
+    console.log("req.query.emp_no",req.query.emp_no)
     if (error) {
+      console.log(  "status:","400",error.details[0].message)
       context.res = {
         status: 400,
         headers: {
@@ -49,6 +50,7 @@ module.exports = async function (context, req) {
       const result = await collection.replaceOne(filter, updatedItem);
 
       if (result.modifiedCount === 0) {
+        console.log(  "status:","404","Record not found")
         context.res = {
           status: 404,
           headers: {
@@ -59,6 +61,7 @@ module.exports = async function (context, req) {
           },
         };
       } else {
+        console.log(  "status:","200","Record updated successfully")
         context.res = {
           status: 200,
           headers: {
@@ -72,6 +75,7 @@ module.exports = async function (context, req) {
       }
     }
   } catch (error) {
+    console.log(  "status:","500", "Error: No data found in the request")
     context.res = {
       status: 500,
       headers: {

@@ -5,7 +5,7 @@ module.exports = async function (context, req) {
   try {
     // Extract user from the token
     const user = extractUserFromToken(req, process.env.secretKey);
-
+console.log("validated user",user)
     if (!user) {
       context.res = {
         status: 401,
@@ -51,7 +51,8 @@ module.exports = async function (context, req) {
     const pageSize = parseInt(req.query.pageSize) || 10;
     const skip = (page - 1) * pageSize;
      
-    
+    console.log("queryOptions",queryOptions)
+    console.log("sort",sort)
     // Read operation with querying options
     const results = await collection
       .find(queryOptions)
@@ -59,8 +60,9 @@ module.exports = async function (context, req) {
       .skip(skip)
       .limit(pageSize)
       .toArray();
-
+      console.log("data",results)
     context.res = {
+      
       status: 200,
       headers: {
         "Content-Type": "application/json",
