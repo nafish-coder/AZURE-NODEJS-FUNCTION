@@ -21,7 +21,9 @@
         "morgan": "^1.10.0",
         "passport": "^0.6.0",
         "passport-azure-ad": "^4.3.5",
-        "sinon": "^16.0.0"
+        "sinon": "^16.0.0",
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^5.0.0"
     },
     "main": "index.js",
     "keywords": [],

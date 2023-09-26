@@ -29,7 +29,10 @@ module.exports = async function (context, req) {
         return handleBadRequest(context, "Invalid filter parameter format. Use 'filter=fieldName:value'");
       }
       const [field, value] = filterParts;
+      if (field=="emp_no")
+      queryOptions[field] =parseInt (value);
       queryOptions[field] = value;
+      
     }
 
     // Sorting
@@ -47,7 +50,8 @@ module.exports = async function (context, req) {
     const page = parseInt(req.query.page) || 1;
     const pageSize = parseInt(req.query.pageSize) || 10;
     const skip = (page - 1) * pageSize;
-
+     
+    
     // Read operation with querying options
     const results = await collection
       .find(queryOptions)

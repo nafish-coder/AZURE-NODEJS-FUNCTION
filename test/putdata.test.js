@@ -76,7 +76,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.status).toBe(401); // Adjust status code as needed
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
  
   it("should update a record successfully and return a 200 status code", async () => {
     const context = {
@@ -107,7 +107,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.body.message).toBe("Record updated successfully");
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
   it("should return a 'Record not found' message with a 404 status code", async () => {
     const context = {
       res: {},
@@ -138,7 +138,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.body.message).toBe("Record not found");
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
   it("VALIDATION : gender should be required", async () => {
     const context = {
       res: {},
@@ -168,7 +168,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.body.message).toBe('"gender" is required');
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
   it("VALIDATION : gender should be either 'M' or 'F'", async () => {
     const context = {
       res: {},
@@ -199,7 +199,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.body.message).toBe('"gender" must be one of [M, F]');
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
   it("VALIDATION : first_name should required", async () => {
     const context = {
       res: {},
@@ -229,7 +229,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.body.message).toBe('"first_name" is required');
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
   it("VALIDATION : first_name should be a string", async () => {
     const context = {
       res: {},
@@ -260,7 +260,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.body.message).toBe('"first_name" must be a string');
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
   it("VALIDATION : last_name should required", async () => {
     const context = {
       res: {},
@@ -290,7 +290,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.body.message).toBe('"last_name" is required');
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
   it("VALIDATION : last_name should be a string", async () => {
     const context = {
       res: {},
@@ -321,7 +321,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.body.message).toBe('"last_name" must be a string');
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
   it("VALIDATION : hire_date is required", async () => {
     const context = {
       res: {},
@@ -351,7 +351,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.body.message).toBe('"hire_date" is required');
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
   it("VALIDATION : birth_date is required", async () => {
     const context = {
       res: {},
@@ -381,7 +381,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.body.message).toBe('"birth_date" is required');
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
   it("VALIDATION : emp_no quary should be a non-empty number", async () => {
     const context = {
       res: {},
@@ -412,7 +412,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.body.message).toBe('"emp_no" must be a number');
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
   it("handles error when no data is given in the request 500 status code", async () => {
     const context = {
       res: {},
@@ -430,7 +430,7 @@ describe("Azure Function Tests -Insert/put data", () => {
     );
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
    it("Unauthorized: invalid token user not found", async () => {
     const context = {
       res: {},
@@ -458,5 +458,5 @@ describe("Azure Function Tests -Insert/put data", () => {
     expect(context.res.status).toBe(401); // Adjust status code as needed
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
 });

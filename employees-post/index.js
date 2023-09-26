@@ -36,7 +36,7 @@ module.exports = async function (context, req) {
     }
 
     const existingDocument = await collection.findOne({ emp_no: insertedBody.emp_no });
-
+console.log(insertedBody)
     if (existingDocument) {
       await collection.updateOne({ emp_no: insertedBody.emp_no }, { $set: insertedBody });
     } else {

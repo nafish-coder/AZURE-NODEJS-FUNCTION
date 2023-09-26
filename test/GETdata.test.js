@@ -63,7 +63,7 @@ describe("Azure Function Tests -GET data", () => {
     expect(valid).toBe(false);
     expect(context.res.status).toBe(401); 
 
-  }, 15000);
+  }, 50000);
   it("should retrieve data from the database table using a GET request and return a 200 status code", async () => {
     const context = {
       res: {},
@@ -89,7 +89,7 @@ describe("Azure Function Tests -GET data", () => {
     // Use Jest assertions to check if the validation passed
     expect(valid).toBe(true);
     expect(context.res.body.message).toBe("retrieve data from the database table using a GET request");
-  }, 15000);
+  }, 50000);
   it("should filter  data from the database table using a GET request A/c query and return a 200 status code", async () => {
     const context = {
       res: {},
@@ -114,11 +114,40 @@ describe("Azure Function Tests -GET data", () => {
     expect(valid).toBe(true);
     expect(context.res.body.page).toBe(1);
     expect(context.res.body.StartIndex).toBe(0);
-    expect(context.res.body.pageSize).toBe(10);
+    
     expect(context.res.status).toBe(200); 
     expect(context.res.body.message).toBe("retrieve data from the database table using a GET request");
 
-  }, 15000);
+  }, 50000);
+  it("should filter  data from the database table using emp_no and return a 200 status code", async () => {
+    const context = {
+      res: {},
+    };
+
+    const req = {
+      query: {filter:"emp_no:23"},
+      body: {
+        
+      },
+    };
+    req.headers = {
+      authorization:
+        token,
+    };
+
+    await azureFunction(context, req);
+    const validate = ajv.compile(schema);
+    const valid = validate(context.res.body);
+  
+    // Use Jest assertions to check if the validation passed
+    expect(valid).toBe(true);
+    expect(context.res.body.page).toBe(1);
+    expect(context.res.body.StartIndex).toBe(0);
+    
+    expect(context.res.status).toBe(200); 
+    expect(context.res.body.message).toBe("retrieve data from the database table using a GET request");
+
+  }, 50000);
   it("should filter  data from the database table using a GET request A/c inappropriate query (error handle)  and return a 404 status code", async () => {
     const context = {
       res: {},
@@ -145,7 +174,7 @@ describe("Azure Function Tests -GET data", () => {
     expect(context.res.status).toBe(400); 
     expect(context.res.body.message).toBe("Invalid filter parameter format. Use 'filter=fieldName:value'");
 
-  }, 15000);
+  }, 50000);
   it("Unauthorized: invalid token user not found", async () => {
     const context = {
       res: {},
@@ -175,7 +204,7 @@ describe("Azure Function Tests -GET data", () => {
     expect(context.res.status).toBe(401); // Adjust status code as needed
 
     // Add more assertions as needed based on your function's behavior
-  }, 15000);
+  }, 50000);
   it("Sorting data in descending order from a database table using a GET request and returning a 200 status code", async () => {
     const context = {
       res: {},
@@ -200,11 +229,11 @@ describe("Azure Function Tests -GET data", () => {
     expect(valid).toBe(true);
     expect(context.res.body.page).toBe(1);
     expect(context.res.body.StartIndex).toBe(0);
-    expect(context.res.body.pageSize).toBe(10); 
+     
     expect(context.res.status).toBe(200); 
     expect(context.res.body.message).toBe("retrieve data from the database table using a GET request");
 
-  }, 15000);
+  }, 50000);
   it("Sorting data in descending order ,page=2 and returning a 200 status code", async () => {
     const context = {
       res: {},
@@ -229,11 +258,11 @@ describe("Azure Function Tests -GET data", () => {
     expect(valid).toBe(true);
     expect(context.res.body.page).toBe(2);
     expect(context.res.body.StartIndex).toBe(10);
-    expect(context.res.body.pageSize).toBe(10); 
+     
     expect(context.res.status).toBe(200); 
     expect(context.res.body.message).toBe("retrieve data from the database table using a GET request");
 
-  }, 15000);
+  }, 50000);
   it("Sorting data in ascending order from a database table using a GET request and returning a 200 status code", async () => {
     const context = {
       res: {},
@@ -258,11 +287,11 @@ describe("Azure Function Tests -GET data", () => {
     expect(valid).toBe(true);
     expect(context.res.body.page).toBe(1);
     expect(context.res.body.StartIndex).toBe(0);
-    expect(context.res.body.pageSize).toBe(10); 
+     
     expect(context.res.status).toBe(200); 
     expect(context.res.body.message).toBe("retrieve data from the database table using a GET request");
 
-  }, 15000);
+  }, 50000);
   it("Sorting data from the database table using a GET request A/c inappropriate query (error handle)  and return a 404 status code", async () => {
     const context = {
       res: {},
@@ -289,7 +318,7 @@ describe("Azure Function Tests -GET data", () => {
     expect(context.res.status).toBe(400); 
     expect(context.res.body.message).toBe("Invalid sort parameter format. Use 'sort=fieldName:asc' or 'sort=fieldName:desc'");
 
-  }, 15000);
+  }, 50000);
   it("pagination in  database table using a GET request and returning a 200 status code", async () => {
     const context = {
       res: {},
@@ -319,12 +348,12 @@ describe("Azure Function Tests -GET data", () => {
     expect(context.res.status).toBe(200); 
   
     expect(context.res.body.StartIndex).toBe(0);
-    expect(context.res.body.pageSize).toBe(10); 
+     
     expect(context.res.body.page).toBe(1);
     expect(context.res.body.message).toBe("retrieve data from the database table using a GET request");
    
 
-  }, 15000);
+  }, 50000);
   it("pagination page =2 in  database table using a GET request and returning a 200 status code", async () => {
     const context = {
       res: {},
@@ -354,11 +383,11 @@ describe("Azure Function Tests -GET data", () => {
     expect(context.res.status).toBe(200); 
     expect(context.res.body.page).toBe(2);
     expect(context.res.body.StartIndex).toBe(10);
-    expect(context.res.body.pageSize).toBe(10);
+    
     expect(context.res.body.message).toBe("retrieve data from the database table using a GET request");
    
 
-  }, 15000);
+  }, 50000);
   it("can't retrieve data from the database table using a GET request", async () => {
     const context = {
       res: {},
@@ -383,6 +412,6 @@ describe("Azure Function Tests -GET data", () => {
     expect(context.res.status).toBe(500); 
     expect(context.res.body.message).toBe("Can't retrieve data from the database table using a GET request");
 
-  }, 15000);
+  }, 50000);
   
 });

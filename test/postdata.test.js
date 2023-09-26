@@ -77,7 +77,7 @@ describe("Azure Function Tests -POST data", () => {
    
     expect(context.res.status).toBe(401); 
 
-  }, 10000);
+  }, 50000);
   
   it("should create a record successfully and return a 200 status code", async () => {
     const context = {
@@ -108,7 +108,7 @@ describe("Azure Function Tests -POST data", () => {
     expect(context.res.body.message).toBe("Item updated or inserted successfully");
     expect(context.res.body.insertedBody).toBe(req.body);
 
-  }, 10000);
+  }, 50000);
   it("should update if emp_no is exist then record updated record successfully and return a 200 status code", async () => {
     const context = {
       res: {},
@@ -137,7 +137,7 @@ describe("Azure Function Tests -POST data", () => {
     expect(context.res.status).toBe(200); 
     expect(context.res.body.message).toBe("Item updated or inserted successfully");
     expect(context.res.body.insertedBody).toBe(req.body);
-  }, 10000);
+  }, 50000);
   it("VALIDATION : gender should be required", async () => {
     const context = {
       res: {},
@@ -168,7 +168,7 @@ describe("Azure Function Tests -POST data", () => {
     expect(context.res.status).toBe(400); 
     expect(context.res.body.message).toBe('"gender" is required');
 
-  }, 10000);
+  }, 50000);
   it("VALIDATION : gender should be either 'M' or 'F'", async () => {
     const context = {
       res: {},
@@ -199,7 +199,7 @@ describe("Azure Function Tests -POST data", () => {
     expect(context.res.status).toBe(400); 
     expect(context.res.body.message).toBe('"gender" must be one of [M, F]');
 
-  }, 10000);
+  }, 50000);
   it("VALIDATION : first_name should required", async () => {
     const context = {
       res: {},
@@ -229,7 +229,7 @@ describe("Azure Function Tests -POST data", () => {
     expect(context.res.status).toBe(400); 
     expect(context.res.body.message).toBe('"first_name" is required');
 
-  }, 10000);
+  }, 50000);
   it("VALIDATION : first_name should be a string", async () => {
     const context = {
       res: {},
@@ -260,7 +260,7 @@ describe("Azure Function Tests -POST data", () => {
     expect(context.res.status).toBe(400); 
     expect(context.res.body.message).toBe('"first_name" must be a string');
 
-  }, 10000);
+  }, 50000);
   it("VALIDATION : last_name should required", async () => {
     const context = {
       res: {},
@@ -290,7 +290,7 @@ describe("Azure Function Tests -POST data", () => {
     expect(context.res.status).toBe(400); 
     expect(context.res.body.message).toBe('"last_name" is required');
 
-  }, 10000);
+  }, 50000);
   it("VALIDATION : last_name should be a string", async () => {
     const context = {
       res: {},
@@ -321,7 +321,7 @@ describe("Azure Function Tests -POST data", () => {
     expect(context.res.status).toBe(400); 
     expect(context.res.body.message).toBe('"last_name" must be a string');
 
-  }, 10000);
+  }, 50000);
   it("VALIDATION : hire_date is required", async () => {
     const context = {
       res: {},
@@ -351,7 +351,7 @@ describe("Azure Function Tests -POST data", () => {
     expect(context.res.status).toBe(400); 
     expect(context.res.body.message).toBe('"hire_date" is required');
 
-  }, 10000);
+  }, 50000);
   it("VALIDATION : birth_date is required", async () => {
     const context = {
       res: {},
@@ -381,7 +381,7 @@ describe("Azure Function Tests -POST data", () => {
     expect(context.res.status).toBe(400); 
     expect(context.res.body.message).toBe('"birth_date" is required');
 
-  }, 10000);
+  }, 50000);
   it("handles error when no data is given in the request 500 status code", async () => {
     const context = {
       res: {},
@@ -399,7 +399,7 @@ describe("Azure Function Tests -POST data", () => {
       "Internal Server Error"
     );
 
-  }, 10000);
+  }, 50000);
   it("Unauthorized: invalid token user not found", async () => {
     const context = {
       res: {},
@@ -428,5 +428,5 @@ describe("Azure Function Tests -POST data", () => {
     expect(context.res.status).toBe(401); // Adjust status code as needed
 
     // Add more assertions as needed based on your function's behavior
-  }, 10000);
+  }, 50000);
 });

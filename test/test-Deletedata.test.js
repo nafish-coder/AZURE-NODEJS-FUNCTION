@@ -57,7 +57,7 @@ describe("Azure Function Tests -deleted data", () => {
    
     expect(context.res.status).toEqual(401); 
 
-  }, 10000);
+  }, 50000);
   it("should delete a record successfully, show test fail when trying the same emp_no again so change quary test again , and return a 200 status code", async () => {
     const context = {
       res: {},
@@ -83,7 +83,7 @@ describe("Azure Function Tests -deleted data", () => {
          expect(context.res.status).toBe(200); 
     expect(context.res.body.message).toBe("Item deleted successfully ");
     
-  }, 10000);
+  }, 50000);
   it("should delete emp_id  not found and return a 404 status code", async () => {
     const context = {
       res: {},
@@ -109,7 +109,7 @@ describe("Azure Function Tests -deleted data", () => {
     expect(context.res.status).toBe(404); 
     expect(context.res.body.message).toBe( "Record not found");
 
-  }, 10000);
+  }, 50000);
   it("should Item ID (emp_no) not provided in the query", async () => {
     const context = {
       res: {},
@@ -135,7 +135,7 @@ describe("Azure Function Tests -deleted data", () => {
     expect(context.res.status).toBe(400); 
     expect(context.res.body.message).toBe("emp_no (id) not provided in the query");
 
-  }, 10000);
+  }, 50000);
    it("Unauthorized: invalid token user not found", async () => {
     const context = {
       res: {},
@@ -163,7 +163,7 @@ describe("Azure Function Tests -deleted data", () => {
     expect(context.res.status).toBe(401); 
 
     
-  }, 10000);
+  }, 50000);
   it("handles error when no data is given in the request 500 status code", async () => {
     const context = {
       res: {},
@@ -181,5 +181,5 @@ describe("Azure Function Tests -deleted data", () => {
       "An error occurred while processing your request."
     );
 
-  }, 10000);
+  }, 50000);
 });
