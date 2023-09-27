@@ -14,9 +14,11 @@ Before you begin, make sure you have the following prerequisites installed:
 
 - NodeJS: [Install NodeJS](https://nodejs.org/en)
 - JavaScript: [JavaScript Documentation](https://code.visualstudio.com/Docs/languages/javascript)
-- MongoDB: [MongoDB](https://www.mongodb.com/)
 - Jest for testing: [Jest](https://jestjs.io/)
 - VSCode: The editor we are using for the project. [Download VSCode](https://code.visualstudio.com/)
+-A [MongoDB Atlas](https://www.mongodb.com/atlas) database deployed and configured with appropriate network rules and user rules.
+-The [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli) installed and configured to use your Azure account.
+-The [Azure Functions Core Tools](https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Cisolated-process%2Cnode-v4%2Cpython-v2%2Chttp-trigger%2Ccontainer-apps&pivots=programming-language-javascript#install-the-azure-functions-core-tools) installed and configured.
 
 ## Getting Started
 
@@ -78,12 +80,116 @@ npm test
 ### Step 3: Deploy to Azure
 
 1. Make sure you have an Azure account and are logged in using the Azure CLI.
+The provided instructions guide you through creating an Azure Functions App using the Azure CLI. Below is a step-by-step breakdown of the commands and the process:
 
-2. In the terminal, run the following command to deploy your Azure Functions to Azure:
+i. **Create a Resource Group**:
+   Replace `<GROUP_NAME>` with the desired name for your resource group and `<AZURE_REGION>` with the Azure region of your choice. Run the command to create a resource group:
 
-```bash
-func azure functionapp publish FuncRestApiNODEJS
-```
+   ```bash
+   az group create --name <GROUP_NAME> --location <AZURE_REGION>
+   ```
+
+   Example:
+   ```bash
+   az group create --name MyFunctionAppGroup --location East US
+   ```
+
+ii. **Create a Storage Account**:
+   Replace `<STORAGE_NAME>`, `<GROUP_NAME>`, and `<AZURE_REGION>` as appropriate. This command creates a storage account, which will be used for function app storage.
+
+   ```bash
+   az storage account create --name <STORAGE_NAME> --location <AZURE_REGION> --resource-group <GROUP_NAME> --sku Standard_LRS
+   ```
+
+   Example:
+   ```bash
+   az storage account create --name mystorageaccount --location East US --resource-group MyFunctionAppGroup --sku Standard_LRS
+   ```
+
+iii. **Create a Function App**:
+   Create the Azure Function App by executing the following command. Replace `<GROUP_NAME>`, `<AZURE_REGION>`, `<APP_NAME>`, and `<STORAGE_NAME>` with appropriate values:
+
+   ```bash
+   az functionapp create --resource-group <GROUP_NAME> --consumption-plan-location <AZURE_REGION> --runtime node --functions-version 4 --name <APP_NAME> --storage-account <STORAGE_NAME>
+   ```
+
+   Example:
+   ```bash
+   az functionapp create --resource-group MyFunctionAppGroup --consumption-plan-location East US --runtime node --functions-version 4 --name MyFunctionApp --storage-account mystorageaccount
+   ```
+
+   - `--resource-group`: Specifies the resource group you created earlier.
+   - `--consumption-plan-location`: Specifies the Azure region.
+   - `--runtime`: Specifies the runtime for your functions (in this case, Node.js).
+   - `--functions-version`: Specifies the version of Azure Functions to use.
+   - `--name`: Specifies the name of your Azure Function App.
+   - `--storage-account`: Specifies the storage account created earlier.
+
+iv. With these steps completed, you should now have an Azure Function App configured in the cloud. You can now proceed with writing code for your functions and deploying them to your Azure Function App.
+
+Remember to replace the placeholder values with your actual choices and make sure you have the Azure CLI installed and configured with your Azure account before running these commands.
+
+
+To deploy an Azure Function with MongoDB support to the cloud, you can follow the provided instructions. Here's a step-by-step breakdown of the commands and the process:
+
+1. **Set Environment Variables**:
+   Ensure that your local environment variables, which include MongoDB connection details, are configured to work in the Azure cloud. Use the following Azure CLI commands to set these environment variables. Replace `<FUNCTION_APP_NAME>`, `<RESOURCE_GROUP_NAME>`, `<MONGODB_ATLAS_URI>`, `<MONGODB_ATLAS_DATABASE>`, and `<MONGODB_ATLAS_COLLECTION>` with your actual values:
+
+   ```bash
+   az functionapp config appsettings set --name <FUNCTION_APP_NAME> --resource-group <RESOURCE_GROUP_NAME> --settings MONGODB_ATLAS_URI=<MONGODB_ATLAS_URI>
+   az functionapp config appsettings set --name <FUNCTION_APP_NAME> --resource-group <RESOURCE_GROUP_NAME> --settings MONGODB_ATLAS_DATABASE=<MONGODB_ATLAS_DATABASE>
+   az functionapp config appsettings set --name <FUNCTION_APP_NAME> --resource-group <RESOURCE_GROUP_NAME> --settings MONGODB_ATLAS_COLLECTION=<MONGODB_ATLAS_COLLECTION>
+    az functionapp config appsettings set --name <FUNCTION_APP_NAME> --resource-group <RESOURCE_GROUP_NAME> --settings secretKey=<secretKey> for jwt token validate
+   ```
+
+   Example:
+
+   ```bash
+   az functionapp config appsettings set --name MyFunctionApp --resource-group MyFunctionAppGroup --settings MONGODB_ATLAS_URI="YourMongoDBConnectionURI"
+   az functionapp config appsettings set --name MyFunctionApp --resource-group MyFunctionAppGroup --settings MONGODB_ATLAS_DATABASE=MyDatabase
+   az functionapp config appsettings set --name MyFunctionApp --resource-group MyFunctionAppGroup --settings MONGODB_ATLAS_COLLECTION=MyCollection
+    az functionapp config appsettings set --name MyFunctionApp --resource-group MyFunctionAppGroup --settings secretKey=secretKey
+   ```
+
+2. **Deploy the Function App**:
+   Once your environment variables are configured, you can deploy your Azure Function App to the cloud using the Azure Functions Core Tools (func CLI). Run the following command:
+
+   ```bash
+   func azure functionapp publish <FUNCTION_APP_NAME>
+   ```
+
+   Example:
+
+   ```bash
+   func azure functionapp publish MyFunctionApp
+   ```
+
+   This command will package and deploy your functions to the Azure Function App.
+
+3. **Obtain the Host Key**:
+   Before you can test your functions, you need to obtain the "host key" from Azure. This key is used to secure your HTTP requests. You can usually find this key in the Azure portal under the Function App's configuration.
+
+4. **Test Your Functions**:
+   With your Function App deployed and the host key obtained, you can now test your functions using tools like cURL, Postman, or similar HTTP clients. Make HTTP requests to your function's public URL and include the host key in your request headers for authentication.
+
+By following these steps, you should have your Azure Function with MongoDB support deployed to the cloud and ready for testing. Make sure to replace the placeholder values with your actual configuration details.
+
+This command publishes project files from the current directory to the <FunctionAppName> as a .zip deployment package. If the project requires compilation, it's done remotely during deployment.
+
+The following considerations apply to this kind of deployment:
+
+Publishing overwrites existing files in the remote function app deployment.
+
+You must have already created a [function app in your Azure subscription](https://portal.azure.com). Core Tools deploys your project code to this function app resource. To learn how to create a function app from the command prompt or terminal window using the Azure CLI or Azure PowerShell, see Create a Function App for serverless execution. You can also create these resources in the Azure portal. You get an error when you try to publish to a <FunctionAppName> that doesn't exist in your subscription.
+
+A project folder may contain language-specific files and directories that shouldn't be published. Excluded items are listed in a .funcignore file in the root project folder.
+
+By default, your project is deployed so that it runs from the deployment package. To disable this recommended deployment mode, use the --nozip option.
+
+A remote build is performed on compiled projects. This can be controlled by using the --no-build option.
+
+Use the --publish-local-settings option to automatically create app settings in your function app based on values in the local.settings.json file.
+
 
 3. Once the deployment is complete, you'll receive a URL where you can access your deployed functions in the cloud.
 
