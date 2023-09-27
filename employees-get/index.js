@@ -30,7 +30,8 @@ console.log("validated user",user)
       }
       const [field, value] = filterParts;
       if (field=="emp_no")
-      queryOptions[field] =parseInt (value);
+      queryOptions[field] =parseInt(value);
+    else
       queryOptions[field] = value;
       
     }
