@@ -5,7 +5,7 @@ module.exports = async function (context, req) {
   try {
     // Extract user from the token
     const user = extractUserFromToken(req, process.env.secretKey);
-console.log("validated user",user)
+context.log("validated user",user)
     if (!user) {
       context.res = {
         status: 401,
@@ -52,8 +52,8 @@ console.log("validated user",user)
     const pageSize = parseInt(req.query.pageSize) || 10;
     const skip = (page - 1) * pageSize;
      
-    console.log("queryOptions",queryOptions)
-    console.log("sort",sort)
+    context.log("queryOptions",queryOptions)
+    context.log("sort",sort)
     // Read operation with querying options
     const results = await collection
       .find(queryOptions)
@@ -61,7 +61,7 @@ console.log("validated user",user)
       .skip(skip)
       .limit(pageSize)
       .toArray();
-      console.log("data",results)
+      context.log("data",results)
     context.res = {
       
       status: 200,
@@ -77,6 +77,7 @@ console.log("validated user",user)
       },
     };
   } catch (error) {
+    context.error( "Can't retrieve data from the database table using a GET request // database error")
     context.res = {
       status: 500,
       headers: {

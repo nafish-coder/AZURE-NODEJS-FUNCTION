@@ -46,11 +46,15 @@ describe("Azure Function Tests -POST data", () => {
       MONGODB_ATLAS_COLLECTION1: config.Values.MONGODB_ATLAS_COLLECTION1,
       secretKey: config.Values.secretKey,
     });
+
+    
   });
 
   it("Unauthorized: Missing or invalid token", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -81,7 +85,9 @@ describe("Azure Function Tests -POST data", () => {
   
   it("should create a record successfully and return a 200 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -112,7 +118,9 @@ describe("Azure Function Tests -POST data", () => {
  
   it("VALIDATION : gender should be required", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -143,7 +151,9 @@ describe("Azure Function Tests -POST data", () => {
   }, 50000);
   it("VALIDATION : gender should be either 'M' or 'F'", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -174,7 +184,9 @@ describe("Azure Function Tests -POST data", () => {
   }, 50000);
   it("VALIDATION : first_name should required", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -204,7 +216,9 @@ describe("Azure Function Tests -POST data", () => {
   }, 50000);
   it("VALIDATION : first_name should be a string", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -235,7 +249,9 @@ describe("Azure Function Tests -POST data", () => {
   }, 50000);
   it("VALIDATION : last_name should required", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -265,7 +281,9 @@ describe("Azure Function Tests -POST data", () => {
   }, 50000);
   it("VALIDATION : last_name should be a string", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -296,7 +314,9 @@ describe("Azure Function Tests -POST data", () => {
   }, 50000);
   it("VALIDATION : hire_date is required", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -326,7 +346,9 @@ describe("Azure Function Tests -POST data", () => {
   }, 50000);
   it("VALIDATION : birth_date is required", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -356,7 +378,9 @@ describe("Azure Function Tests -POST data", () => {
   }, 50000);
   it("handles error when no data is given in the request 500 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {};
@@ -374,7 +398,9 @@ describe("Azure Function Tests -POST data", () => {
   }, 50000);
   it("Unauthorized: invalid token user not found", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {

@@ -5,7 +5,7 @@ module.exports = async function (context, req) {
   try {
     // Extract user from the token
     const user = extractUserFromToken(req, process.env.secretKey);
-    console.log(  "valid token user ",user)
+    context.log(  "valid token user ",user)
     if (!user) {
       context.res = {
         status: 401,
@@ -22,7 +22,7 @@ module.exports = async function (context, req) {
 
     // Validate the input data (emp_no ID)
     if (!emp_no) {
-      console.log("emp_no not provided in the query", emp_no);
+      context.error("emp_no not provided in the query", emp_no);
       context.res = {
         status: 400,
         headers: {
@@ -38,7 +38,7 @@ module.exports = async function (context, req) {
     // Attempt to delete the specified record
     const result = await collection.deleteOne({ emp_no: emp_no });
     if (result.deletedCount === 0) {
-      console.log("status: 404 ,Record not found", emp_no);
+      context.error("status: 404 ,Record not found", emp_no);
       context.res = {
         status: 404, // Not Found
         headers: {
@@ -50,7 +50,7 @@ module.exports = async function (context, req) {
         },
       };
     } else {
-      console.log(" status: 200, Item deleted successfully ", emp_no);
+      context.log(" status: 200, Item deleted successfully ", emp_no);
       context.res = {
         status: 200,
         headers: {
@@ -64,7 +64,7 @@ module.exports = async function (context, req) {
       };
     }
   } catch (error) {
-    console.log("An error occurred while processing your request. ");
+    context.error("An error occurred while processing your request. ");
     context.res = {
       status: 500, // Internal Server Error
       body: {

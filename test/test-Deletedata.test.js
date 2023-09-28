@@ -34,7 +34,9 @@ describe("Azure Function Tests -deleted data", () => {
  
   it("Unauthorized: Missing or invalid token", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -60,7 +62,9 @@ describe("Azure Function Tests -deleted data", () => {
   }, 50000);
   it("should delete a record successfully, show test fail when trying the same emp_no again so change quary test again , and return a 200 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -86,7 +90,9 @@ describe("Azure Function Tests -deleted data", () => {
   }, 50000);
   it("should delete emp_id  not found and return a 404 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -112,7 +118,9 @@ describe("Azure Function Tests -deleted data", () => {
   }, 50000);
   it("should Item ID (emp_no) not provided in the query", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -138,7 +146,9 @@ describe("Azure Function Tests -deleted data", () => {
   }, 50000);
    it("Unauthorized: invalid token user not found", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -166,7 +176,9 @@ describe("Azure Function Tests -deleted data", () => {
   }, 50000);
   it("handles error when no data is given in the request 500 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {};

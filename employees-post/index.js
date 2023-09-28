@@ -14,7 +14,7 @@ const updateSchema = Joi.object({
 module.exports = async function (context, req) {
   try {
     const user = extractUserFromToken(req, process.env.secretKey);
-    console.log("validated user",user)
+    context.log("validated user",user)
     if (!user) {
       return (context.res = {
         status: 401,
@@ -29,7 +29,7 @@ module.exports = async function (context, req) {
     const { error } = updateSchema.validate(insertedBody);
 
     if (error) {
-      console.log(  "status:","400",error.details[0].message)
+      context.error(  "status:","400",error.details[0].message)
       return (context.res = {
         status: 400,
         body: { message: error.details[0].message },
@@ -38,7 +38,7 @@ module.exports = async function (context, req) {
 else{
      await collection.insertOne(insertedBody);
     
-     console.log(  "status:","200","insertedBody ",insertedBody)
+     context.log(  "status:","200","insertedBody ",insertedBody)
     context.res = {
       status: 200,
       body: { message: "Item updated or inserted successfully", insertedBody },
@@ -47,7 +47,7 @@ else{
     
    
   } catch (error) {
-    console.log(  "status:","500","Internal Server Error")
+    context.error(  "status:","500","Internal Server Error")
     context.res = {
       status: 500,
       body: { message: "Internal Server Error" },

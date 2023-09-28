@@ -7,7 +7,6 @@
     "MONGODB_ATLAS_CLUSTER": "Cluster0",
     "MONGODB_ATLAS_DATABASE": "azure-function",
     "MONGODB_ATLAS_COLLECTION": "RESTAPI",
-
     "secretKey":"jwt-token",
    "MONGODB_ATLAS_COLLECTION1":"AUTH"
   },

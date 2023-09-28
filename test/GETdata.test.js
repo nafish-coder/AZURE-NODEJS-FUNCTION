@@ -27,7 +27,9 @@ var schema = {
   required: ["page", "pageSize", "StartIndex", "data", "message"],
 };
 const ajv = new Ajv();
+
 describe("Azure Function Tests -GET data", () => {
+ let context;
   beforeAll(() => {
     process.env = Object.assign(process.env, {
       MONGODB_ATLAS_URI: config.Values.MONGODB_ATLAS_URI,
@@ -37,10 +39,14 @@ describe("Azure Function Tests -GET data", () => {
       secretKey: config.Values.secretKey,
       MONGODB_ATLAS_COLLECTION1: config.Values.MONGODB_ATLAS_COLLECTION1,
     });
+    context = ({ log: jest.fn() }) 
   });
+ 
   it("Unauthorized: Missing or invalid token", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -66,7 +72,9 @@ describe("Azure Function Tests -GET data", () => {
   }, 50000);
   it("should retrieve data from the database table using a GET request and return a 200 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -92,7 +100,9 @@ describe("Azure Function Tests -GET data", () => {
   }, 50000);
   it("should filter  data from the database table using a GET request A/c query and return a 200 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -121,7 +131,9 @@ describe("Azure Function Tests -GET data", () => {
   }, 50000);
   it("should filter  data from the database table using emp_no and return a 200 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -150,7 +162,9 @@ describe("Azure Function Tests -GET data", () => {
   }, 50000);
   it("should filter  data from the database table using a GET request A/c inappropriate query (error handle)  and return a 404 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -177,7 +191,9 @@ describe("Azure Function Tests -GET data", () => {
   }, 50000);
   it("Unauthorized: invalid token user not found", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -207,7 +223,9 @@ describe("Azure Function Tests -GET data", () => {
   }, 50000);
   it("Sorting data in descending order from a database table using a GET request and returning a 200 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -236,7 +254,9 @@ describe("Azure Function Tests -GET data", () => {
   }, 50000);
   it("Sorting data in descending order ,page=2 and returning a 200 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -265,7 +285,9 @@ describe("Azure Function Tests -GET data", () => {
   }, 50000);
   it("Sorting data in ascending order from a database table using a GET request and returning a 200 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -294,7 +316,9 @@ describe("Azure Function Tests -GET data", () => {
   }, 50000);
   it("Sorting data from the database table using a GET request A/c inappropriate query (error handle)  and return a 404 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -321,7 +345,9 @@ describe("Azure Function Tests -GET data", () => {
   }, 50000);
   it("pagination in  database table using a GET request and returning a 200 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -356,7 +382,9 @@ describe("Azure Function Tests -GET data", () => {
   }, 50000);
   it("pagination page =2 in  database table using a GET request and returning a 200 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -390,7 +418,9 @@ describe("Azure Function Tests -GET data", () => {
   }, 50000);
   it("can't retrieve data from the database table using a GET request", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {

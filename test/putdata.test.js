@@ -49,7 +49,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   });
   it("Unauthorized: Missing or invalid token", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -80,7 +82,9 @@ describe("Azure Function Tests -Insert/put data", () => {
  
   it("should update a record successfully and return a 200 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -110,7 +114,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   }, 50000);
   it("should return a 'Record not found' message with a 404 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -141,7 +147,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   }, 50000);
   it("VALIDATION : gender should be required", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -171,7 +179,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   }, 50000);
   it("VALIDATION : gender should be either 'M' or 'F'", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -202,7 +212,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   }, 50000);
   it("VALIDATION : first_name should required", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -232,7 +244,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   }, 50000);
   it("VALIDATION : first_name should be a string", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -263,7 +277,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   }, 50000);
   it("VALIDATION : last_name should required", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -293,7 +309,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   }, 50000);
   it("VALIDATION : last_name should be a string", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -324,7 +342,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   }, 50000);
   it("VALIDATION : hire_date is required", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -354,7 +374,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   }, 50000);
   it("VALIDATION : birth_date is required", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -384,7 +406,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   }, 50000);
   it("VALIDATION : emp_no quary should be a non-empty number", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
@@ -415,7 +439,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   }, 50000);
   it("handles error when no data is given in the request 500 status code", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {};
@@ -433,7 +459,9 @@ describe("Azure Function Tests -Insert/put data", () => {
   }, 50000);
    it("Unauthorized: invalid token user not found", async () => {
     const context = {
-      res: {},
+       log: jest.fn(),
+error:jest.fn(),
+res: {},
     };
 
     const req = {
