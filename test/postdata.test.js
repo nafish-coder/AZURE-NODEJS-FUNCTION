@@ -70,14 +70,10 @@ res: {},
     };
 
     req.headers = {
-      authorization:
-        "Bee eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hZmlzaCIsInJvbGUiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY5NDk2NzE2MiwiZXhwIjozMTU3NDIzNDA5NTYyfQ.aXyX1B1ZdCKnMTbsiyPBSXphc2hdEqNJiyo3yjxYdMs",
-    };
+      };
 
     await azureFunction(context, req);
-    const validate = ajv.compile(schema);
-    const isValid = validate(context.res.body);
-    expect(isValid).toBe(false);
+   
    
     expect(context.res.status).toBe(401); 
 

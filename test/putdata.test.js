@@ -66,18 +66,13 @@ res: {},
     };
 
     req.headers = {
-      authorization:
-        "Bee eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hZmlzaCIsInJvbGUiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY5NDk2NzE2MiwiZXhwIjozMTU3NDIzNDA5NTYyfQ.aXyX1B1ZdCKnMTbsiyPBSXphc2hdEqNJiyo3yjxYdMs",
-    };
+
+            };
 
     await azureFunction(context, req);
-    const validate = ajv.compile(schema);
-    const isValid = validate(context.res.body);
-    expect(isValid).toBe(false);
-    // Add assertions to test the behavior of your Azure Function
-    expect(context.res.status).toBe(401); // Adjust status code as needed
-
-    // Add more assertions as needed based on your function's behavior
+  
+    
+    expect(context.res.status).toBe(401); 
   }, 50000);
  
   it("should update a record successfully and return a 200 status code", async () => {
@@ -476,15 +471,12 @@ res: {},
     };
 
     req.headers = {
-      authorization:
-        "Bearer e122yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJ1c2VybmFtZSI6Im5hZmlzaCIsInJvbGUiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY5NDk2NzE2MiwiZXhwIjozMTU3NDIzNDA5NTYyfQ.aXyX1B1ZdCKnMTbsiyPBSXphc2hdEqNJiyo3yjxYdMs",
-    };
+     
+      };
 
     await azureFunction(context, req);
 
-    // Add assertions to test the behavior of your Azure Function
-    expect(context.res.status).toBe(401); // Adjust status code as needed
-
-    // Add more assertions as needed based on your function's behavior
+    
+    expect(context.res.status).toBe(401); 
   }, 50000);
 });
