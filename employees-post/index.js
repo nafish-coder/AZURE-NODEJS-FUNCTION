@@ -29,7 +29,7 @@ module.exports = async function (context, req) {
     const { error } = updateSchema.validate(insertedBody);
 
     if (error) {
-      context.error(  "status:","400",error.details[0].message)
+    context.log(  "status:","400",error.details[0].message)
       return (context.res = {
         status: 400,
         body: { message: error.details[0].message },
@@ -47,7 +47,7 @@ else{
     
    
   } catch (error) {
-    context.error(  "status:","500","Internal Server Error")
+  context.log(  "status:","500","Internal Server Error")
     context.res = {
       status: 500,
       body: { message: "Internal Server Error" },

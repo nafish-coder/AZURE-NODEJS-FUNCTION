@@ -77,7 +77,7 @@ context.log("validated user",user)
       },
     };
   } catch (error) {
-    context.error( "Can't retrieve data from the database table using a GET request // database error")
+  context.log( "Can't retrieve data from the database table using a GET request // database error")
     context.res = {
       status: 500,
       headers: {

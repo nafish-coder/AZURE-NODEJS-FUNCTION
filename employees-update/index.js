@@ -16,7 +16,7 @@ module.exports = async function (context, req) {
     const user = extractUserFromToken(req, process.env.secretKey);
     context.log(  "valid token",user)
     if (!user) {
-      context.error( "Unauthorized: Invalid token")
+    context.log( "Unauthorized: Invalid token")
       context.res = {
         status: 401,
         body: "Unauthorized: Invalid token",
@@ -36,7 +36,7 @@ module.exports = async function (context, req) {
     const { error } = updateSchema.validate(updatedItem);
     context.log("req.query.emp_no",req.query.emp_no)
     if (error) {
-      context.error(  "status:","400",error.details[0].message)
+    context.log(  "status:","400",error.details[0].message)
       context.res = {
         status: 400,
         headers: {
@@ -51,7 +51,7 @@ module.exports = async function (context, req) {
       const result = await collection.replaceOne(filter, updatedItem);
 
       if (result.modifiedCount === 0) {
-        context.error(  "status:","404","Record not found")
+      context.log(  "status:","404","Record not found")
         context.res = {
           status: 404,
           headers: {
@@ -76,7 +76,7 @@ module.exports = async function (context, req) {
       }
     }
   } catch (error) {
-    context.error(  "status:","500", "Error: No data found in the request")
+  context.log(  "status:","500", "Error: No data found in the request")
     context.res = {
       status: 500,
       headers: {

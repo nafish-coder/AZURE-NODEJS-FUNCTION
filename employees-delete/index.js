@@ -22,7 +22,7 @@ module.exports = async function (context, req) {
 
     // Validate the input data (emp_no ID)
     if (!emp_no) {
-      context.error("emp_no not provided in the query", emp_no);
+    context.log("emp_no not provided in the query", emp_no);
       context.res = {
         status: 400,
         headers: {
@@ -38,7 +38,7 @@ module.exports = async function (context, req) {
     // Attempt to delete the specified record
     const result = await collection.deleteOne({ emp_no: emp_no });
     if (result.deletedCount === 0) {
-      context.error("status: 404 ,Record not found", emp_no);
+    context.log("status: 404 ,Record not found", emp_no);
       context.res = {
         status: 404, // Not Found
         headers: {
@@ -64,7 +64,7 @@ module.exports = async function (context, req) {
       };
     }
   } catch (error) {
-    context.error("An error occurred while processing your request. ");
+  context.log("An error occurred while processing your request. ");
     context.res = {
       status: 500, // Internal Server Error
       body: {
