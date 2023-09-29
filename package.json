@@ -2,7 +2,7 @@
     "name": "functionapp",
     "version": "1.0.0",
     "scripts": {
-        "start": "func start",
+        "start": "func start --Verbose",
         "test": "jest --coverage"
     },
     "dependencies": {

@@ -9,7 +9,7 @@ const verifyToken = (token, secretKey) => {
     return decoded;
   } catch (error) {
     // If the token verification fails, return null or throw an error
-    return null;
+    return "Unauthorized: Invalid token";
   }
 };
 
@@ -17,7 +17,7 @@ const extractUserFromToken = (req, secretKey) => {
   const authHeader = req.headers['authorization'];
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return null; // No token provided
+    return "Unauthorized: Invalid token"; // No token provided
   }
 
   // Extract and verify the JWT token
